@@ -14,7 +14,7 @@ all: $(OBJ) | $(OUT_DIR)/
 	cp --recursive include $(OUT_DIR)/
 
 $(BUILD)/%.o: src/% | $(BUILD)/
-	$(CC) -c $< -o $@ -Os
+	$(CC) -c $< -o $@ -Os -std=c89
 
 .PRECIOUS: %/
 
