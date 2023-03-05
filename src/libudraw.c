@@ -49,12 +49,12 @@ void uInit(int w, int h, const char *title, int scale, int fps) {
     	_fps = 50;
     }
     SDL_LockSurface(_surface);
-    uClear();
+    uClear(0x00000000);
     _last_t = SDL_GetTicks();
 }
 
-void uClear(void) {
-    SDL_FillRect(_surface, NULL, 0x00000000);
+void uClear(uint32_t color) {
+    SDL_FillRect(_surface, NULL, color);
 }
 
 void uPixel(int x, int y, uint32_t color) {

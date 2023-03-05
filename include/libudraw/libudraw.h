@@ -35,7 +35,7 @@ enum {
 #define KEYAMOUNT 8
 
 void uInit(int w, int h, const char *title, int scale, int fps);
-void uClear(void);
+void uClear(uint32_t color);
 void uPixel(int x, int y, uint32_t color);
 void uShow(void);
 bool uAskexit(void);
