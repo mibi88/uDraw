@@ -30,7 +30,8 @@ enum {
     KDOWN  = SDLK_DOWN,
     KLEFT  = SDLK_LEFT,
     KRIGHT = SDLK_RIGHT,
-    KVALID = SDLK_SPACE
+    KVALID = SDLK_x,
+    KMOVE  = SDLK_c
 };
 #define KEYAMOUNT 8
 
