@@ -43,6 +43,7 @@ void uPixel(int x, int y, uint32_t color);
 void uShow(void);
 bool uAskexit(void);
 bool uKeydown(int key);
+char uGetchar(void);
 void uWaitnextframe(void);
 void uDeinit(void);
 

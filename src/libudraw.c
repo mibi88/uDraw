@@ -22,6 +22,7 @@ SDL_Surface *_surface;
 int _scale, _w, _h, _fps;
 Uint32 _last_t;
 Uint8 *_kbuffer;
+char _char = '\0';
 
 void uInit(int w, int h, const char *title, int scale, int fps) {
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
@@ -48,6 +49,7 @@ void uInit(int w, int h, const char *title, int scale, int fps) {
     if(_fps<1){
     	_fps = 50;
     }
+    SDL_EnableUNICODE(1);
     SDL_LockSurface(_surface);
     uClear(0x00000000);
     _last_t = SDL_GetTicks();
@@ -80,11 +82,17 @@ void uShow(void) {
 
 bool uAskexit(void) {
     SDL_Event event;
+    int kbd_ev = 0;
     while(SDL_PollEvent(&event)){
         if(event.type == SDL_QUIT){
             return 1;
         }
+        if(event.type == SDL_KEYDOWN){
+            _char = (char)event.key.keysym.unicode;
+            kbd_ev = 1;
+        }
     }
+    if(!kbd_ev) _char = '\0';
     return 0;
 }
 
@@ -92,6 +100,10 @@ bool uKeydown(int key) {
     SDL_PumpEvents();
     _kbuffer = SDL_GetKeyState(NULL);
     return _kbuffer[key];
+}
+
+char uGetchar(void) {
+    return _char;
 }
 
 void uWaitnextframe(void) {
